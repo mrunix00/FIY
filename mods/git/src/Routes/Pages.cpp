@@ -32,7 +32,8 @@ std::string Pages::repo_create_page(
 
 #define FIY_MOD_GIT_REPO_CREATE_RULES(kv) \
     kv("fiy_user", user) \
-    kv("orgs_option_list", orgs_option_list)
+    kv("orgs_option_list", orgs_option_list) \
+    kv("user_orgs_option_list", orgs_option_list)
 
     static constexpr char repo_create[] = "/repo_create.html";
     return MIN_SSR_MUSTACHE(file_contents<repo_create>(), FIY_MOD_GIT_REPO_CREATE_RULES);

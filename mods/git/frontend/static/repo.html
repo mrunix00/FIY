@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" sizes="any" type="image/svg+xml" href="{{fiy_baseuri}}/logo.svg">
     <link rel="alternate icon" type="image/x-icon" href="{{fiy_baseuri}}/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/portal/main.css?v=4">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
     <link rel="stylesheet" href="{{mod_baseurl}}/main.css" />
+    <script src="/portal/theme.js?v=4"></script>
     <style>
 
         a {
@@ -202,13 +206,16 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="//{{fiy_domain}}">Portal</a>
-        | <a href="{{mod_baseurl}}">Git-IY</a>
-        | <a href="{{mod_baseurl}}/{{request_user}}">Profile</a>
-        <hr/>
-    </nav>
-
+<header>
+  <div class="bar">
+    <a class="wordmark" href="/">FIY<span>.</span></a>
+    <div class="bar-right">
+      <nav aria-label="Main navigation"><a href="//{{fiy_domain}}/portal">Portal</a><a href="{{mod_baseurl}}">Git-IY</a><a href="{{mod_baseurl}}/{{request_user}}">Profile</a></nav>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</header>
+<main>
     <div class="container">
 
         <!-- [pfp] user / repo [visibility] -->
@@ -231,7 +238,7 @@
         <!-- Repo stats and links -->
         <section class="repo-stats">
 
-            <a href="{{repo_name}}/tickets" class="button" title="view tickets: issues and pull requests">
+            <a href="{{repo_name}}/tickets" class="btn btn-secondary" title="view tickets: issues and pull requests">
                 <i class="fa fa-exchange-alt"></i> {{repo_tickets_count}}
                 <span class="desktop-labels">Tickets</span>
             </a>
@@ -244,20 +251,20 @@
                 <a href="{{repo_name}}/forks" title="View forks"> {{repo_forks_count}}</a>
             </span>
             <!-- only show if the user owns this repo -->
-            <a href="settings" class="button" title="check the settings for this repo">
+            <a href="settings" class="btn btn-secondary" title="check the settings for this repo">
                 <i class="fa fa-cog"></i> Settings
             </a>
 
             <!-- idk if it's worth implementing this feature
-            <a href="insights" class="button"> <i class="fa fa-chart-line"></i></a>
+            <a href="insights" class="btn btn-secondary"> <i class="fa fa-chart-line"></i></a>
             -->
         </section>
 
         <section class="repo-stats">
-            <a href="{{repo_name}}/refs" class="button">
+            <a href="{{repo_name}}/refs" class="btn btn-secondary">
                 {{repo_branch}} <i class="fa fa-caret-down"></i>
             </a>
-            <a href="{{repo_name}}/refs" class="button" title="view branches and tags">
+            <a href="{{repo_name}}/refs" class="btn btn-secondary" title="view branches and tags">
                 <span title="branches"><i class="fa fa-code-branch" title="branches"></i>
                     {{repo_branches_count}} <span class="desktop-labels">Branches</span>
                 </span>
@@ -265,11 +272,11 @@
                     {{repo_tags_count}} <span class="desktop-labels">Tags</span>
                 </span>
             </a>
-            <a href="{{repo_name}}/commits" class="button" title="view commit history">
+            <a href="{{repo_name}}/commits" class="btn btn-secondary" title="view commit history">
                 <i class="fa fa-history"></i> {{repo_commits_count}}
                 <span class="desktop-labels">Commits</span>
             </a>
-            <span class="button" id="code-download-button">
+            <span class="btn btn-secondary" id="code-download-button">
                 <i class="fa fa-download"></i> Code
             </span>
         </section>
@@ -277,8 +284,8 @@
             <span id="clone-title"><i class="fa fa-terminal"></i> Clone</span>
             <pre id="clone-url">{{mod_baseurl}}/{{repo_owner}}/{{repo_name}}</pre>
             <p>Clone the repo using the web url</p>
-            <button id="copy-clone-url"><i class="fa fa-copy"></i> Copy</button>
-            <button id="clone-instructions-close">Close</button>
+            <button class="btn btn-primary" id="copy-clone-url"><i class="fa fa-copy"></i> Copy</button>
+            <button class="btn btn-secondary" id="clone-instructions-close">Close</button>
         </section>
 
         <section class="repo-files">
@@ -323,6 +330,8 @@
         </section>
 
     </div>
+</main>
+<footer>FIY — Federate It Yourself.</footer>
 
     <script>
         const cloneInstrs = document.getElementById('clone-instructions');
